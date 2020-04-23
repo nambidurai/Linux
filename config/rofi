@@ -1,0 +1,17 @@
+rofi.combi-modi:        drun,run
+rofi.modi:              combi
+rofi.display-combi:     i3
+rofi.location:          1
+rofi.width:             100
+rofi.lines:             2
+rofi.line-margin:       0
+rofi.line-padding:      1
+rofi.separator-style:   none
+rofi.font:              Monospace Regular 14
+rofi.columns:           4
+rofi.bw:                0
+rofi.hide-scrollbar:    true
+rofi.color-window:     #1f1f1f, #1f1f1f, #b9bcba
+rofi.color-normal:     #1f1f1f, #b9bcba, #1f1f1f, #005577, #b9bcba
+rofi.color-active:     #1f1f1f, #b9bcba, #1f1f1f, #007763, #b9bcba
+rofi.color-urgent:     #1f1f1f, #b9bcba, #1f1f1f, #77003d, #b9bcba

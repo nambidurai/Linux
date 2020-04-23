@@ -1,0 +1,50 @@
+systemctl
+free -h
+df --total -h
+lsblk
+sudo umount -a /media/winsf
+sudo mount -t vboxsf winsf /media/winsf
+sudo apt install -y davfs2
+sudo mount -t davfs -o noexec https://app.koofr.net/dav/ ~/webdav/
+sudo umount /dev/sdd1
+sudo fdisk /dev/sdd
+sudo mkfs.vfat /dev/sdd1
+sudo mkfs.ntfs /dev/sdb1
+unzip -p 2018-10-09-raspbian-stretch-lite.zip | sudo dd of=/dev/sdd bs=4M conv=fsync status=progress
+sudo apt install --fix-broken
+sudo rm -r /usr/lib/locale/*
+sudo dpkg-reconfigure locales
+sudo locale-gen
+sudo dpkg-reconfigure keyboard-configuration
+cat << EOF | sudo tee /etc/apt/preferences.d/90_stretch-backports_packages
+Package:chromium neovim leafpad fonts-taml git unzip
+Pin: release n=stretch-backports
+Pin-Priority: 1000
+EOF
+pkill -x chromium
+alsamixer
+sudo bleachbit
+bleachbit
+sudo dpkg-reconfigure locale
+vim /etc/locale.gen
+sudo /usr/sbin/locale-gen
+locale -a
+tmux
+tmux ls
+tmux kill-session -t 1
+pactl set-sink-volume 0 75%
+xrdb ~/.Xresources
+rofi -dump-xresources >> test
+fc-list | grep "Mono"
+# sudo add-apt-repository -y "deb [arch=amd64] https://packages.microsoft.com/debian/10/prod buster main"
+# sudo add-apt-repository -y "deb [arch=i386,amd64] http://mirror.23media.de/mariadb/repo/10.2/debian stretch main"
+bash git/nambi/linux/osmini.bash 
+php -m
+phpenmod mbstring
+sudo mysql_secure_installation
+sudo mysql
+grant all on *.* to 'admin'@'localhost' identified by 'asp' with grant option;
+flush privileges;
+mysqladmin -u admin -p version
+mysql -u admin -p
+code -r .
