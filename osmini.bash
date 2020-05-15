@@ -165,7 +165,7 @@ gitcon()	# Github configurations			#
 	else
 		git config --global user.email "$gemail"
 	fi
-	mkdir -p ~/github/$gname
+	# mkdir -p ~/github/$gname
 	echo -e "\e[92mEnd of ${FUNCNAME[0]}\e[0m"
 }
 
