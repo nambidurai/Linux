@@ -138,7 +138,7 @@ progs()		# Install user programs			#
 	sudo apt install -y google-chrome-stable
 	sudo apt install -y code
 	sudo apt install -y dotnet-sdk-3.1
-	sudo apt install -y mariadb-server
+	# sudo apt install -y mariadb-server
 	sudo apt install -y fonts-taml
 	# sudo apt install -y bleachbit
 	# sudo apt install -y python-gtk2 exfat-fuse exfat-utils
