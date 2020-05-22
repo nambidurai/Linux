@@ -123,6 +123,7 @@ i3wm()		# Install i3 window manager		#
 	sudo apt install --no-install-recommends -y i3 rofi
 	sudo apt install --no-install-recommends -y rxvt-unicode
 	sudo apt install --no-install-recommends -y policykit-1-gnome
+	sudo apt install --no-install-recommends -y gnome-keyring
 	mkdir -p ~/.config/i3 ~/.config/rofi ~/.config/urxvt
 	cp $spath/config/i3 ~/.config/i3/config
 	cp $spath/config/rofi ~/.config/rofi/config
