@@ -1,0 +1,21 @@
+{
+    "workbench.startupEditor": "newUntitledFile",
+    "editor.fontSize": 16,
+    "debug.console.fontSize": 16,
+    "terminal.integrated.fontSize": 16,
+    "markdown.preview.fontSize": 16,
+    "editor.minimap.enabled": false,
+    "breadcrumbs.enabled": false,
+    "editor.renderWhitespace": "none",
+    "workbench.iconTheme": "vscode-icons",
+    "files.autoSave": "afterDelay",
+    "git.enableSmartCommit": true,
+    "csharp.referencesCodeLens.enabled": false,
+    "cSpell.allowCompoundWords": true,
+    "autoHide.panelDelay": 30,
+    "autoHide.sideBarDelay": 30,
+    "window.zoomLevel": 1,
+    "autoHide.autoHidePanel": false,
+    "autoHide.hideOnOpen": false,
+    "workbench.activityBar.visible": true    
+}

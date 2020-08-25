@@ -138,7 +138,7 @@ progs()		# Install user programs			#
 	echo -e "\e[92mStart of ${FUNCNAME[0]}\e[0m"
 	sudo apt install -y google-chrome-stable
 	sudo apt install -y code
-	sudo apt install -y dotnet-sdk-3.1
+	# sudo apt install -y dotnet-sdk-3.1
 	# sudo apt install -y mariadb-server
 	sudo apt install -y fonts-taml
 	# sudo apt install -y bleachbit

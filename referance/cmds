@@ -29,3 +29,47 @@ shopt -s globstar
 echo $PS1
 echo $PS2
 nano .bashrc
+export HISTIGNORE=history:ls*:pwd:cd*:dotnet*:exit:mv*:clear:cp*:rm*:*apt*:poweroff:reboot
+PATH="/sbin:/opt/SQLiteStudio:$PATH"
+mkdir repos && cd $1
+sudo apt install git
+git clone http://github.com/nambidurai/Linux
+cd Linux
+bash OSMini.bash
+sudo reboot
+git clone http://github.com/nambidurai/CSharpPractice
+dotnet new sln
+dotnet sln add **/*.csproj
+dotnet sln add
+dotnet sln remove
+dotnet sln list
+dotnet new console -o
+dotnet new classlib -o
+dotnet clean
+dotnet restore
+dotnet build
+dotnet run
+mv * /media/sf_neiru/Code/Books
+sudo apt install sqlite3
+chmod +x InstalQLiteStudio-3.2.1 
+sudo ./InstalQLiteStudio-3.2.1 
+sqlite3 Northwind.db < Northwind.sql 
+/opt/SQLiteStudio/sqlitestudio &
+sudo cp /usr/lib/x86_64-linux-gnu/libcrypto.so.1.1 /usr/lib/x86_64-linux-gnu/libcrypt.so.1.0.0cd ..cd Downloads/xdg-open
+xdg-open .bash_history 
+bash repos/Linux/OSMini.bash 
+donet run
+code -r .
+ip addr
+ip a
+curl ifconfig.me
+alsamixer
+code --list-extensions | xargs -L 1 echo code --install-extension
+code --install-extension jchannon.csharpextensions
+code --install-extension jmrog.vscode-nuget-package-manager
+code --install-extension jorgeserrano.vscode-csharp-snippets
+code --install-extension k--kato.docomment
+code --install-extension ms-dotnettools.csharp
+code --install-extension streetsidesoftware.code-spell-checker
+code --install-extension tomoki1207.pdf
+code --install-extension vscode-icons-team.vscode-icons
