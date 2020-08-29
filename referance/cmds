@@ -72,4 +72,3 @@ code --install-extension k--kato.docomment
 code --install-extension ms-dotnettools.csharp
 code --install-extension streetsidesoftware.code-spell-checker
 code --install-extension tomoki1207.pdf
-code --install-extension vscode-icons-team.vscode-icons

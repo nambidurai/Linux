@@ -1,0 +1,13 @@
+{
+    "workbench.startupEditor": "newUntitledFile",
+    "editor.minimap.enabled": false,
+    "breadcrumbs.enabled": false,
+    "editor.renderWhitespace": "none",
+    "files.autoSave": "afterDelay",
+    "window.zoomLevel": 1,
+    "workbench.colorTheme": "Monokai Dimmed",
+    "workbench.preferredDarkColorTheme": "Monokai Dimmed",
+    "workbench.preferredHighContrastColorTheme": "Monokai Dimmed",
+    "workbench.preferredLightColorTheme": "Monokai Dimmed",
+    "workbench.iconTheme": "vscode-icons"
+}

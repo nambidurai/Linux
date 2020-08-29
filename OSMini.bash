@@ -122,8 +122,11 @@ i3wm()		# Install i3 window manager		#
 	echo -e "\e[92mStart of ${FUNCNAME[0]}\e[0m"
 	sudo apt install --no-install-recommends -y i3 rofi
 	sudo apt install --no-install-recommends -y rxvt-unicode
-	sudo apt install --no-install-recommends -y policykit-1-gnome
 	sudo apt install --no-install-recommends -y gnome-keyring
+	# authentication agent for PolicyKit
+	sudo apt install --no-install-recommends -y policykit-1-gnome
+	# PAM module to unlock the GNOME keyring upon login
+	sudo apt install --no-install-recommends -y libpam-gnome-keyring
 	mkdir -p ~/.config/i3 ~/.config/rofi ~/.config/urxvt
 	cp $spath/config/i3 ~/.config/i3/config
 	cp $spath/config/rofi ~/.config/rofi/config
@@ -138,7 +141,11 @@ progs()		# Install user programs			#
 	echo -e "\e[92mStart of ${FUNCNAME[0]}\e[0m"
 	sudo apt install -y google-chrome-stable
 	sudo apt install -y code
-	# sudo apt install -y dotnet-sdk-3.1
+	code --install-extension vscode-icons-team.vscode-icons
+	code --install-extension streetsidesoftware.code-spell-checker
+	# code --list-extensions | xargs -L 1 echo code --install-extension
+	cp $spath/config/settings ~/.config/Code/User/settings.json
+	sudo apt install -y dotnet-sdk-3.1
 	# sudo apt install -y mariadb-server
 	sudo apt install -y fonts-taml
 	# sudo apt install -y bleachbit
