@@ -144,7 +144,7 @@ progs()		# Install user programs			#
 	code --install-extension vscode-icons-team.vscode-icons
 	code --install-extension streetsidesoftware.code-spell-checker
 	# code --list-extensions | xargs -L 1 echo code --install-extension
-	cp $spath/config/settings ~/.config/Code/User/settings.json
+	cp $spath/config/settings.json ~/.config/Code/User/
 	sudo apt install -y dotnet-sdk-3.1
 	# sudo apt install -y mariadb-server
 	sudo apt install -y fonts-taml

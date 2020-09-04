@@ -5,6 +5,7 @@
     "editor.renderWhitespace": "none",
     "files.autoSave": "afterDelay",
     "window.zoomLevel": 1,
+    "git.enableSmartCommit": true,
     "workbench.colorTheme": "Monokai Dimmed",
     "workbench.preferredDarkColorTheme": "Monokai Dimmed",
     "workbench.preferredHighContrastColorTheme": "Monokai Dimmed",
