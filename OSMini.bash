@@ -28,6 +28,60 @@ sourcelist()	# Edit apt source list			#
 	sudo apt update
 }
 
+xmini()		# Install minimal xserver		#
+{
+	sudo apt install --no-install-recommends -y xserver-xorg-core
+	sudo apt install --no-install-recommends -y xserver-xorg-input-all xserver-xorg-video-intel
+	sudo apt install --no-install-recommends -y xinit x11-xserver-utils
+	sudo apt install --no-install-recommends -y xfonts-100dpi xfonts-75dpi xfonts-base xfonts-scalable
+	# Sound
+	sudo apt install --no-install-recommends -y alsa-utils
+	# 3d direct acceleration
+	sudo apt install --no-install-recommends -y libgl1-mesa-dri mesa-utils
+}
+
+i3wm()		# Install i3 window manager		#
+{
+	sudo apt install --no-install-recommends -y i3 rofi
+	sudo apt install --no-install-recommends -y rxvt-unicode
+	sudo apt install --no-install-recommends -y gnome-keyring
+	# authentication agent for PolicyKit
+	sudo apt install --no-install-recommends -y policykit-1-gnome
+	# PAM module to unlock the GNOME keyring upon login
+	sudo apt install --no-install-recommends -y libpam-gnome-keyring
+	mkdir -p ~/.config/i3 ~/.config/rofi ~/.config/urxvt
+	cp $spath/config/i3 ~/.config/i3/config
+	cp $spath/config/rofi ~/.config/rofi/config
+	cp $spath/config/Xresources ~/.Xresources
+	cp $spath/config/urxvt ~/.config/urxvt/urxvt
+	# xrdb -merge ~/.Xresources
+}
+
+progs()		# Install user programs			#
+{
+	sudo apt install -y google-chrome-stable
+	sudo apt install -y code
+	code --install-extension vscode-icons-team.vscode-icons
+	code --install-extension streetsidesoftware.code-spell-checker
+	code --install-extension ms-dotnettools.csharp
+	code --install-extension jchannon.csharpextensions
+	code --install-extension k--kato.docomment
+	code --install-extension jmrog.vscode-nuget-package-manager
+	code --install-extension fernandoescolar.vscode-solution-explorer
+	# code --list-extensions | xargs -L 1 echo code --install-extension
+	cp $spath/config/settings.json ~/.config/Code/User/
+	sudo apt install -y dotnet-sdk-3.1
+	sudo apt install -y sqlite3
+	# sudo apt install mssql-server
+	# sudo /opt/mssql/bin/mssql-conf setup
+	# sudo apt install mssql-tools unixodbc-dev
+	# echo 'export PATH="$PATH:/opt/mssql-tools/bin"' >> ~/.bash_profile
+	sudo apt install -y fonts-taml
+	# sudo apt install -y bleachbit
+	# sudo apt install -y python-gtk2 exfat-fuse exfat-utils
+	# sudo apt unzip
+}
+
 vboxguest()	# Install virtualbox guest additions 	#
 {
 	sudo mount /dev/sr0 /media/cdrom
@@ -69,51 +123,6 @@ if [[ ! ${DISPLAY} && ${XDG_VTNR} == 1 ]]; then\
     exec startx\
 fi' ~/.profile 
 	# . ~/.profile
-}
-
-xmini()		# Install minimal xserver		#
-{
-	sudo apt install --no-install-recommends -y xserver-xorg-core
-	sudo apt install --no-install-recommends -y xserver-xorg-input-all xserver-xorg-video-intel
-	sudo apt install --no-install-recommends -y xinit x11-xserver-utils
-	sudo apt install --no-install-recommends -y xfonts-100dpi xfonts-75dpi xfonts-base xfonts-scalable
-	# Sound
-	sudo apt install --no-install-recommends -y alsa-utils
-	# 3d direct acceleration
-	sudo apt install --no-install-recommends -y libgl1-mesa-dri mesa-utils
-}
-
-i3wm()		# Install i3 window manager		#
-{
-	sudo apt install --no-install-recommends -y i3 rofi
-	sudo apt install --no-install-recommends -y rxvt-unicode
-	sudo apt install --no-install-recommends -y gnome-keyring
-	# authentication agent for PolicyKit
-	sudo apt install --no-install-recommends -y policykit-1-gnome
-	# PAM module to unlock the GNOME keyring upon login
-	sudo apt install --no-install-recommends -y libpam-gnome-keyring
-	mkdir -p ~/.config/i3 ~/.config/rofi ~/.config/urxvt
-	cp $spath/config/i3 ~/.config/i3/config
-	cp $spath/config/rofi ~/.config/rofi/config
-	cp $spath/config/Xresources ~/.Xresources
-	cp $spath/config/urxvt ~/.config/urxvt/urxvt
-	# xrdb -merge ~/.Xresources
-}
-
-progs()		# Install user programs			#
-{
-	sudo apt install -y google-chrome-stable
-	sudo apt install -y code
-	code --install-extension vscode-icons-team.vscode-icons
-	code --install-extension streetsidesoftware.code-spell-checker
-	# code --list-extensions | xargs -L 1 echo code --install-extension
-	cp $spath/config/settings.json ~/.config/Code/User/
-	sudo apt install -y dotnet-sdk-3.1
-	# sudo apt install -y mariadb-server
-	sudo apt install -y fonts-taml
-	# sudo apt install -y bleachbit
-	# sudo apt install -y python-gtk2 exfat-fuse exfat-utils
-	# sudo apt unzip
 }
 
 gitcon()	# Github configurations			#
@@ -182,6 +191,7 @@ copycon()	# Copy major configurations files	#
 	yes | cp -rf ~/.config/rofi/config $spath/config/rofi
 	yes | cp -rf ~/.Xresources $spath/config/Xresources
 	yes | cp -rf ~/.config/urxvt/urxvt $spath/config/urxvt
+	yes | cp -rf ~/.config/Code/User/settings.json $spath/config/
 }
 
 install()	# Install osmini			#
