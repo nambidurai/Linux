@@ -39,32 +39,18 @@ vboxguest()	# Install virtualbox guest additions 	#
 
 grubcon()	# Grub configurations 			#
 {
-	echo -e "\e[92mStart of ${FUNCNAME[0]}\e[0m"
 	fname='/etc/default/grub'
-	if [ ! -f $fname ]
-	then
-		echo "\e[91mFile dose not exit\e[0m"
-		return
-	fi
-	if [ -f "$fname.org" ] 
-	then
-		sudo cp $fname "$fname.bak"
-		sudo cp "$fname.org" $fname
-		sudo sed -ri "s/^GRUB_TIMEOUT=.$/\
+	sudo cp $fname "$fname.bak"
+	sudo cp "$fname.org" $fname
+	sudo sed -ri "s/^GRUB_TIMEOUT=.$/\
 ### Configurations added by $USER #### \n\
 GRUB_TIMEOUT_STYLE=hidden\n\
 ### end ###/g" $fname
 	sudo update-grub
-	else
-		sudo cp $fname "$fname.org"
-		grubcon
-	fi
-	echo -e "\e[92mEnd of ${FUNCNAME[0]}\e[0m"
 }
 
 autologin()	# Autologin configurations		#
 {
-	echo -e "\e[92mStart of ${FUNCNAME[0]}\e[0m"
 	fpath="/etc/systemd/system/getty@tty1.service.d"
 	sudo mkdir -p "$fpath" && sudo touch $_/autologin.conf 
 	echo '[Service]' | sudo tee $fpath/autologin.conf 1>/dev/null
@@ -73,19 +59,16 @@ ExecStart=\
 ExecStart=-/sbin/agetty --autologin '"$USER"' --noclear %I 38400 linux' $fpath/autologin.conf
 	sudo systemctl enable getty@tty1
 	usrprofile
-	echo -e "\e[92mEnd of ${FUNCNAME[0]}\e[0m"
 }
 
 usrprofile()	# User profile configurations		#
 {
-	echo -e "\e[92mStart of ${FUNCNAME[0]}\e[0m"
 	sed -i '$a # added by '"$USER"'\
 PATH="/sbin:$PATH"\
 if [[ ! ${DISPLAY} && ${XDG_VTNR} == 1 ]]; then\
     exec startx\
 fi' ~/.profile 
 	# . ~/.profile
-	echo -e "\e[92mEnd of ${FUNCNAME[0]}\e[0m"
 }
 
 xmini()		# Install minimal xserver		#
