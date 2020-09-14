@@ -31,7 +31,7 @@ sourcelist()	# Edit apt source list			#
 xmini()		# Install minimal xserver		#
 {
 	sudo apt install --no-install-recommends -y xserver-xorg-core
-	sudo apt install --no-install-recommends -y xserver-xorg-input-all xserver-xorg-video-intel
+	sudo apt install --no-install-recommends -y xserver-xorg-input-all xserver-xorg-video-vmware
 	sudo apt install --no-install-recommends -y xinit x11-xserver-utils
 	sudo apt install --no-install-recommends -y xfonts-100dpi xfonts-75dpi xfonts-base xfonts-scalable
 	# Sound

@@ -65,10 +65,5 @@ ip a
 curl ifconfig.me
 alsamixer
 code --list-extensions | xargs -L 1 echo code --install-extension
-code --install-extension jchannon.csharpextensions
-code --install-extension jmrog.vscode-nuget-package-manager
-code --install-extension jorgeserrano.vscode-csharp-snippets
-code --install-extension k--kato.docomment
-code --install-extension ms-dotnettools.csharp
-code --install-extension streetsidesoftware.code-spell-checker
-code --install-extension tomoki1207.pdf
+HISTCONTROL=ignoreboth:erasedups
+HISTIGNORE="df*:free*:cd*:ls*:clear:exit:*reboot:*poweroff:mkdir*:alsamixer"

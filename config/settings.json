@@ -6,9 +6,6 @@
     "files.autoSave": "afterDelay",
     "window.zoomLevel": 1,
     "git.enableSmartCommit": true,
-    "workbench.colorTheme": "Monokai Dimmed",
-    "workbench.preferredDarkColorTheme": "Monokai Dimmed",
-    "workbench.preferredHighContrastColorTheme": "Monokai Dimmed",
-    "workbench.preferredLightColorTheme": "Monokai Dimmed",
+    "workbench.colorTheme":"Default Dark+",
     "workbench.iconTheme": "vscode-icons"
 }
