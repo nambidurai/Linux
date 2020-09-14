@@ -67,3 +67,5 @@ alsamixer
 code --list-extensions | xargs -L 1 echo code --install-extension
 HISTCONTROL=ignoreboth:erasedups
 HISTIGNORE="df*:free*:cd*:ls*:clear:exit:*reboot:*poweroff:mkdir*:alsamixer"
+GRUB_CMDLINE_LINUX_DEFAULT="quiet loglevel=3 fsck.mode=skip vt.global_cursor_default=0"
+fsck.mode=fastboot

@@ -30,9 +30,8 @@ sourcelist()	# Edit apt source list			#
 
 xmini()		# Install minimal xserver		#
 {
-	sudo apt install --no-install-recommends -y xserver-xorg-core
+	sudo apt install --no-install-recommends -y xserver-xorg-core xinit x11-xserver-utils
 	sudo apt install --no-install-recommends -y xserver-xorg-input-all xserver-xorg-video-vmware
-	sudo apt install --no-install-recommends -y xinit x11-xserver-utils
 	sudo apt install --no-install-recommends -y xfonts-100dpi xfonts-75dpi xfonts-base xfonts-scalable
 	# Sound
 	sudo apt install --no-install-recommends -y alsa-utils
@@ -59,8 +58,8 @@ i3wm()		# Install i3 window manager		#
 
 progs()		# Install user programs			#
 {
-	sudo apt install -y google-chrome-stable
-	sudo apt install -y code
+	sudo apt install --no-install-recommends -y google-chrome-stable
+	sudo apt install --no-install-recommends -y code
 	code --install-extension vscode-icons-team.vscode-icons
 	code --install-extension streetsidesoftware.code-spell-checker
 	code --install-extension ms-dotnettools.csharp
@@ -70,11 +69,11 @@ progs()		# Install user programs			#
 	code --install-extension fernandoescolar.vscode-solution-explorer
 	# code --list-extensions | xargs -L 1 echo code --install-extension
 	cp $spath/config/settings.json ~/.config/Code/User/
-	sudo apt install -y dotnet-sdk-3.1
-	sudo apt install -y sqlite3
-	# sudo apt install mssql-server
+	sudo apt install --no-install-recommends -y dotnet-sdk-3.1
+	sudo apt install --no-install-recommends -y sqlite3
+	# sudo apt --no-install-recommends -y mssql-server
 	# sudo /opt/mssql/bin/mssql-conf setup
-	# sudo apt install mssql-tools unixodbc-dev
+	# sudo apt --no-install-recommends -y mssql-tools unixodbc-dev
 	# echo 'export PATH="$PATH:/opt/mssql-tools/bin"' >> ~/.bash_profile
 	sudo apt install -y fonts-taml
 	# sudo apt install -y bleachbit
@@ -110,7 +109,7 @@ autologin()	# Autologin configurations		#
 	echo '[Service]' | sudo tee $fpath/autologin.conf 1>/dev/null
 	sudo sed -i '$a Type=simple\
 ExecStart=\
-ExecStart=-/sbin/agetty --autologin '"$USER"' --noclear %I 38400 linux' $fpath/autologin.conf
+ExecStart=-/sbin/agetty --skip-login --autologin '"$USER"' --noclear %I 38400 linux' $fpath/autologin.conf
 	sudo systemctl enable getty@tty1
 	usrprofile
 }
@@ -120,7 +119,7 @@ usrprofile()	# User profile configurations		#
 	sed -i '$a # added by '"$USER"'\
 PATH="/sbin:$PATH"\
 if [[ ! ${DISPLAY} && ${XDG_VTNR} == 1 ]]; then\
-    exec startx\
+    exec startx > /dev/null 2>&1\
 fi' ~/.profile 
 	# . ~/.profile
 }
