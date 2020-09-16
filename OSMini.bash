@@ -75,7 +75,7 @@ progs()		# Install user programs			#
 	# sudo /opt/mssql/bin/mssql-conf setup
 	# sudo apt --no-install-recommends -y mssql-tools unixodbc-dev
 	# echo 'export PATH="$PATH:/opt/mssql-tools/bin"' >> ~/.bash_profile
-	sudo apt install -y fonts-taml
+	sudo apt install --no-install-recommends -y fonts-taml
 	# sudo apt install -y bleachbit
 	# sudo apt install -y python-gtk2 exfat-fuse exfat-utils
 	# sudo apt unzip
@@ -198,7 +198,7 @@ install()	# Install osmini			#
 	sourcelist
 	xmini
 	i3wm
-	grubcon
+	# grubcon
 	autologin
 	progs
 	vboxguest
