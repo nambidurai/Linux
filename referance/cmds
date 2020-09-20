@@ -67,10 +67,10 @@ alsamixer
 code --list-extensions | xargs -L 1 echo code --install-extension
 HISTCONTROL=ignoreboth:erasedups
 HISTIGNORE="df*:free*:cd*:ls*:clear:exit*:*reboot:*poweroff:mkdir*:alsamixer"
-GRUB_DEFAULT="GNU/Linux"
-GRUB_SAVEDEFAULT="false"
+GRUB_DEFAULT="0"
+GRUB_TIMEOUT="0"
 GRUB_HIDDEN_TIMEOUT="0"
 GRUB_DISABLE_OS_PROBER="true"
+GRUB_DISTRIBUTOR="`lsb_release -i -s 2> /dev/null || echo Debian`"
 GRUB_CMDLINE_LINUX_DEFAULT="quiet loglevel=3 fsck.mode=skip vt.global_cursor_default=0"
-fsck.mode=fastboot
-sudo apt install grub-customizer
+GRUB_CMDLINE_LINUX=""

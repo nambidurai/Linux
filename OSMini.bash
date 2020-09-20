@@ -33,6 +33,7 @@ xmini()		# Install minimal xserver		#
 	sudo apt install --no-install-recommends -y xserver-xorg-core xinit x11-xserver-utils
 	sudo apt install --no-install-recommends -y xserver-xorg-input-all xserver-xorg-video-vmware
 	sudo apt install --no-install-recommends -y xfonts-100dpi xfonts-75dpi xfonts-base xfonts-scalable
+	sudo apt install --no-install-recommends -y fonts-dejavu
 	# Sound
 	sudo apt install --no-install-recommends -y alsa-utils
 	# 3d direct acceleration

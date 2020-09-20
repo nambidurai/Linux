@@ -1,14 +1,16 @@
+
 ! Perl extensions
 URxvt.perl-ext:
 URxvt.perl-ext-common:
 
-! Appearance
-URxvt.font: xft:Monospace:style=Regular:size=16
-URxvt.boldFont: xft:Monospace:style=Bold:size=16
-URxvt.italicFont: xft:Monospace:style=Italic:size=16
-URxvt.boldItalicFont: xft:Monospace:style=Bold Italic:size=16
-UURxvt.letterSpace: 0
-URxvt.lineSpace: 1.5
+!Fonts
+URxvt*font:           xft:DejaVu Sans Mono:style=Regular:size=17
+URxvt*imFont:         xft:DejaVu Sans Mono:style=Regular:size=17
+URxvt*boldFont:       xft:DejaVu Sans Mono:style=Regular:size=17
+URxvt*italicFont:     xft:DejaVu Sans Mono:style=Oblique:size=17
+URxvt*boldItalicFont: xft:DejaVu Sans Mono:style=Bold Italic:size=17
+URxvt*lineSpace: 1
+URxvt*letterSpace: 1 
 URxvt.cursorBlink: false
 URxvt.cursorUnderline: true
 URxvt.scrollBar: false

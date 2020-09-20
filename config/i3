@@ -14,14 +14,14 @@ set $mod Mod4
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font pango:monospace 8
 # nambi
+# font pango:monospace 8
 for_window [class="^.*"] border pixel 1
 new_window 1pixel
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
-#font pango:DejaVu Sans Mono 8
+font pango:DejaVu Sans Mono 16
 
 # Before i3 v4.8, we used to recommend this one as the default:
 # font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
@@ -35,6 +35,7 @@ floating_modifier $mod
 
 # nambi
 # Start-up apps
+exec_always --no-startup-id xsetroot -solid "#1E1E1E" &
 exec --no-startup-id google-chrome &
 exec --no-startup-id /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1 &
 
@@ -181,6 +182,18 @@ bindsym $mod+r mode "resize"
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 # nambi
-# bar {
+bar {
         # status_command i3status
-# }
+        colors {
+                background #1E1E1E
+                # workspace        border  bg      text
+                focused_workspace  #569CD6 #569CD6 #D4D4D4
+                active_workspace   #569CD6 #569CD6 #D4D4D4
+                inactive_workspace #3C3C3C #3C3C3C #D4D4D4
+                urgent_workspace   #D16969 #D16969 #D4D4D4
+                binding_mode       #D16969 #D16969 #D4D4D4
+        }
+        mode hide
+        hidden_state hide
+        modifier Mod4
+}
