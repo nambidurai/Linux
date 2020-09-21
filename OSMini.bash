@@ -42,16 +42,15 @@ xmini()		# Install minimal xserver		#
 
 i3wm()		# Install i3 window manager		#
 {
-	sudo apt install --no-install-recommends -y i3 rofi
+	sudo apt install --no-install-recommends -y i3
 	sudo apt install --no-install-recommends -y rxvt-unicode
 	sudo apt install --no-install-recommends -y gnome-keyring
 	# authentication agent for PolicyKit
 	sudo apt install --no-install-recommends -y policykit-1-gnome
 	# PAM module to unlock the GNOME keyring upon login
 	sudo apt install --no-install-recommends -y libpam-gnome-keyring
-	mkdir -p ~/.config/i3 ~/.config/rofi ~/.config/urxvt
+	mkdir -p ~/.config/i3 ~/.config/urxvt
 	cp $spath/config/i3 ~/.config/i3/config
-	cp $spath/config/rofi ~/.config/rofi/config
 	cp $spath/config/Xresources ~/.Xresources
 	cp $spath/config/urxvt ~/.config/urxvt/urxvt
 	# xrdb -merge ~/.Xresources
@@ -188,7 +187,6 @@ copycon()	# Copy major configurations files	#
 {
 	mkdir -p $spath/config
 	yes | cp -rf ~/.config/i3/config $spath/config/i3
-	yes | cp -rf ~/.config/rofi/config $spath/config/rofi
 	yes | cp -rf ~/.Xresources $spath/config/Xresources
 	yes | cp -rf ~/.config/urxvt/urxvt $spath/config/urxvt
 	yes | cp -rf ~/.config/Code/User/settings.json $spath/config/

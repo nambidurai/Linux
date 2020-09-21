@@ -74,3 +74,9 @@ GRUB_DISABLE_OS_PROBER="true"
 GRUB_DISTRIBUTOR="`lsb_release -i -s 2> /dev/null || echo Debian`"
 GRUB_CMDLINE_LINUX_DEFAULT="quiet loglevel=3 fsck.mode=skip vt.global_cursor_default=0"
 GRUB_CMDLINE_LINUX=""
+sudo apt install --no-install-recommends ./dbeaver-ce_7.2.0_amd64.deb 
+i3-msg exit
+i3-msg -t get_workspace
+dbeaver &
+arecord -l
+arecord -L

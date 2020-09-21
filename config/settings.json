@@ -37,5 +37,7 @@
         "terminal.ansiRed":"#D16969",
         "terminal.ansiWhite":"#D4D4D4",
         "terminal.ansiYellow":"#D7BA7D"
-    }
+    },
+    "github.gitAuthentication": false,
+    "git.terminalAuthentication": false
 }
