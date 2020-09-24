@@ -168,19 +168,13 @@ sysupdate()	# Update apt cache and debian		#
 	sudo apt update && sudo apt upgrade && sudo apt full-upgrade
 }
 
-hisclean()	# Remove duplicates in .bash_history	#
-{
-	set history -a
- 	 nl ~/.bash_history | sort -k 2 -k 1,1nr| uniq -f 1 | sort -n | cut -f 2 > ~/bash_history.bak
-  	set history -c
-  	cp ~/bash_history.bak ~/.bash_history
-  	set history -r
-}
-
 sysclean()	# Remove residual install files 	#
 {
 	sudo apt remove --purge -y `dpkg -l | grep '^rc' | awk '{print $2}'`
 	sudo apt autoremove -y && sudo apt autoclean -y
+	rm -rf ~/.local/share/Trash/*
+	rm -rf ~/.local/share/recently-used.xbel
+	touch ~/.local/share/recently-used.xbel
 }
 
 copycon()	# Copy major configurations files	#
