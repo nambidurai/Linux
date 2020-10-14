@@ -58,6 +58,7 @@ i3wm()		# Install i3 window manager		#
 
 progs()		# Install user programs			#
 {
+	sudo apt install --no-install-recommends -y ca-certificates bash-completion
 	sudo apt install --no-install-recommends -y google-chrome-stable
 	sudo apt install --no-install-recommends -y code
 	code --install-extension vscode-icons-team.vscode-icons
