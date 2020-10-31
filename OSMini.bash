@@ -60,14 +60,14 @@ progs()		# Install user programs			#
 {
 	sudo apt install --no-install-recommends -y ca-certificates bash-completion
 	sudo apt install --no-install-recommends -y google-chrome-stable
-	sudo apt install --no-install-recommends -y code
-	code --install-extension vscode-icons-team.vscode-icons
-	code --install-extension streetsidesoftware.code-spell-checker
-	code --install-extension ms-dotnettools.csharp
-	code --install-extension jchannon.csharpextensions
-	code --install-extension k--kato.docomment
-	code --install-extension jmrog.vscode-nuget-package-manager
-	code --install-extension fernandoescolar.vscode-solution-explorer
+	sudo apt install --no-install-recommends -y code libxtst6
+	# code --install-extension vscode-icons-team.vscode-icons
+	# code --install-extension streetsidesoftware.code-spell-checker
+	# code --install-extension ms-dotnettools.csharp
+	# code --install-extension jchannon.csharpextensions
+	# code --install-extension k--kato.docomment
+	# code --install-extension jmrog.vscode-nuget-package-manager
+	# code --install-extension fernandoescolar.vscode-solution-explorer
 	# code --list-extensions | xargs -L 1 echo code --install-extension
 	cp $spath/config/settings.json ~/.config/Code/User/
 	sudo apt install --no-install-recommends -y dotnet-sdk-3.1
@@ -75,7 +75,8 @@ progs()		# Install user programs			#
 	# sudo apt --no-install-recommends -y mssql-server
 	# sudo /opt/mssql/bin/mssql-conf setup
 	# sudo apt --no-install-recommends -y mssql-tools unixodbc-dev
-	# echo 'export PATH="$PATH:/opt/mssql-tools/bin"' >> ~/.bash_profile
+	# cd
+	echo 'export PATH="$PATH:/opt/mssql-tools/bin"' >> ~/.bash_profile
 	sudo apt install --no-install-recommends -y fonts-taml
 	# sudo apt install -y bleachbit
 	# sudo apt install -y python-gtk2 exfat-fuse exfat-utils

@@ -80,3 +80,28 @@ i3-msg -t get_workspace
 dbeaver &
 arecord -l
 arecord -L
+sudo apt install --no-install-recommends neovim python-neovim python3-neovim xclip
+sudo apt install --no-install-recommends javascript-common
+sudo apt install --no-install-recommends nodejs
+sudo apt install --no-install-recommends npm
+vim .bash_history
+mkdir ~/.config/nvim
+touch ~/.config/nvim/init.vim
+curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+vim ~/.config/nvim/init.vim
+sudo apt install --no-install-recommends python-pip
+sudo apt install --no-install-recommends python3-pip
+sudo apt install --no-install-recommends python3-setuptools
+sudo apt install --no-install-recommends python-setuptools
+pip2 install pynvim
+pip3 install pynvim
+curl -sL https://deb.nodesource.com/setup_14.x | sudo bash -
+sudo npm install -g neovim
+sudo apt install --no-install-recommends ruby-full
+sudo gem install neovim
+cd repos
+git clone https://github.com/powerline/fonts.git --depth=1
+cd fonts
+./install.sh 
+cd ..
+rm -rf fonts
