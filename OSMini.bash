@@ -1,106 +1,132 @@
 #!/bin/bash
 # Developed by nambi durai ganesan
 
-# get the directory name of the scrpit
+# exit when any command fails
+set -e
+
+# Shortcut or alias
+# get scrpit directory name
 spath=$(dirname "$0")
+AptInstall="sudo apt install --no-install-recommends -y -qq"
+AptRepos="sudo add-apt-repository -y -qq"
 
 sourcelist()	# Edit apt source list			#
 {
 	# use the debian source list generator link below to find your nearest repo
 	# https://debgen.simplylinux.ch
 	# options -sy = include source and confirm yes
-	sudo apt install -y software-properties-common curl wget apt-transport-https dirmngr gnupg
+	$AptInstall software-properties-common curl wget apt-transport-https dirmngr gnupg
 	sudo mv /etc/apt/sources.list /etc/apt/sources.list.bak
 	sudo touch /etc/apt/sources.list
-	sudo add-apt-repository -y "deb http://deb.debian.org/debian/ stable main contrib non-free"
-	sudo add-apt-repository -y "deb http://deb.debian.org/debian/ stable-updates main contrib non-free"
-	sudo add-apt-repository -y "deb http://deb.debian.org/debian-security stable/updates main"
-	sudo add-apt-repository -y "deb http://ftp.debian.org/debian buster-backports main"
-	# GPG Keys
+	$AptRepos "deb http://deb.debian.org/debian/ stable main contrib non-free"
+	$AptRepos "deb http://deb.debian.org/debian/ stable-updates main contrib non-free"
+	$AptRepos "deb http://deb.debian.org/debian-security stable/updates main"
+	$AptRepos "deb http://ftp.debian.org/debian buster-backports main"
+	# GPG keys
+	# google chrome
 	wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
+	# vscode
 	wget -q -O - https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add -
-	# 3rd party respos
-	sudo add-apt-repository -y "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main"
-	sudo add-apt-repository -y "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main"
+	# 3rd party repos
+	# google chrome
+	$AptRepos "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main"
+	# vscode
+	$AptRepos "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main"
 	# dotnet core
-	sudo add-apt-repository -y "deb [arch=amd64] https://packages.microsoft.com/debian/10/prod buster main"
-	sudo add-apt-repository -y "deb [arch=amd64,arm64,armhf] https://packages.microsoft.com/ubuntu/18.04/mssql-server-2019 bionic main"
+	$AptRepos "deb [arch=amd64] https://packages.microsoft.com/debian/10/prod buster main"
+	# microsoft sql
+	$AptRepos "deb [arch=amd64,arm64,armhf] https://packages.microsoft.com/ubuntu/18.04/mssql-server-2019 bionic main"
 	sudo apt update
 }
 
 xmini()		# Install minimal xserver		#
 {
-	sudo apt install --no-install-recommends -y xserver-xorg-core xinit x11-xserver-utils
-	sudo apt install --no-install-recommends -y xserver-xorg-input-all xserver-xorg-video-vmware
-	sudo apt install --no-install-recommends -y xfonts-100dpi xfonts-75dpi xfonts-base xfonts-scalable
-	sudo apt install --no-install-recommends -y fonts-dejavu
+	AptInstall xserver-xorg-core xinit x11-xserver-utils
+	AptInstall xserver-xorg-input-all xserver-xorg-video-vmware
+	# AptInstall xfonts-100dpi xfonts-75dpi xfonts-base xfonts-scalable
+	# AptInstall fonts-dejavu
+	# AptInstall fonts-terminus xfonts-terminus xfont-terminus-oblique
+	AptInstall fonts-taml
 	# Sound
-	sudo apt install --no-install-recommends -y alsa-utils
+	AptInstall alsa-utils
 	# 3d direct acceleration
-	sudo apt install --no-install-recommends -y libgl1-mesa-dri mesa-utils
+	AptInstall libgl1-mesa-dri mesa-utils
 }
 
 i3wm()		# Install i3 window manager		#
 {
-	sudo apt install --no-install-recommends -y i3
-	sudo apt install --no-install-recommends -y rxvt-unicode
-	sudo apt install --no-install-recommends -y gnome-keyring
-	# authentication agent for PolicyKit
-	sudo apt install --no-install-recommends -y policykit-1-gnome
+	# tilting window manager
+	AptInstall i3
+	# terminal emulator
+	AptInstall rxvt-unicode
+	# daemon and tools to store session passwords and other sensitive info.
+	AptInstall gnome-keyring
 	# PAM module to unlock the GNOME keyring upon login
-	sudo apt install --no-install-recommends -y libpam-gnome-keyring
+	AptInstall libpam-gnome-keyring
+	# authentication agent for PolicyKit
+	AptInstall policykit-1-gnome
+	# copy configuration
+	# make the required directories
 	mkdir -p ~/.config/i3 ~/.config/urxvt
+	# i3
 	cp $spath/config/i3 ~/.config/i3/config
+	# xresources
 	cp $spath/config/Xresources ~/.Xresources
+	# urxvt
 	cp $spath/config/urxvt ~/.config/urxvt/urxvt
 	# xrdb -merge ~/.Xresources
 }
 
 progs()		# Install user programs			#
 {
-	sudo apt install --no-install-recommends -y ca-certificates bash-completion
-	sudo apt install --no-install-recommends -y google-chrome-stable
-	sudo apt install --no-install-recommends -y code libxtst6
-	# code --install-extension vscode-icons-team.vscode-icons
-	# code --install-extension streetsidesoftware.code-spell-checker
-	# code --install-extension ms-dotnettools.csharp
-	# code --install-extension jchannon.csharpextensions
-	# code --install-extension k--kato.docomment
-	# code --install-extension jmrog.vscode-nuget-package-manager
-	# code --install-extension fernandoescolar.vscode-solution-explorer
-	# code --list-extensions | xargs -L 1 echo code --install-extension
+	# standard utilities
+	AptInstall ca-certificates bash-completion
+	# google chrome
+	AptInstall google-chrome-stable
+	# vssode
+	AptInstall code libxtst6
+	# install vscode extensions
+	code --install-extension vscode-icons-team.vscode-icons
+	code --install-extension streetsidesoftware.code-spell-checker
+	code --install-extension ms-dotnettools.csharp
+	code --install-extension jchannon.csharpextensions
+	code --install-extension k--kato.docomment
+	code --install-extension jmrog.vscode-nuget-package-manager
+	code --install-extension fernandoescolar.vscode-solution-explorer
+	code --list-extensions | xargs -L 1 echo code --install-extension
+	# copy settings.jason
 	cp $spath/config/settings.json ~/.config/Code/User/
-	sudo apt install --no-install-recommends -y dotnet-sdk-3.1
-	sudo apt install --no-install-recommends -y sqlite3
-	# sudo apt --no-install-recommends -y mssql-server
+	# dotnet core
+	AptInstall dotnet-sdk-3.1
+	# sqlite
+	AptInstall sqlite3
+	# mssql
+	# AptInstall mssql-server
+	# AptInstall mssql-tools unixodbc-dev
+	# add to path
+	# echo 'export PATH="$PATH:/opt/mssql-tools/bin"' >> ~/.bash_profile
 	# sudo /opt/mssql/bin/mssql-conf setup
-	# sudo apt --no-install-recommends -y mssql-tools unixodbc-dev
-	# cd
-	echo 'export PATH="$PATH:/opt/mssql-tools/bin"' >> ~/.bash_profile
-	sudo apt install --no-install-recommends -y fonts-taml
-	# sudo apt install -y bleachbit
-	# sudo apt install -y python-gtk2 exfat-fuse exfat-utils
-	# sudo apt unzip
+	# other utilites
+	# AptInstall bleachbit unzip
+	# for FAT filesystem
+	# AptInstall python-gtk2 exfat-fuse exfat-utils
 }
 
 vboxguest()	# Install virtualbox guest additions 	#
 {
 	sudo mount /dev/sr0 /media/cdrom
-	sudo apt install -y build-essential dkms linux-headers-$(uname -r) module-assistant
+	AptInstall build-essential dkms linux-headers-$(uname -r) module-assistant
 	sudo m-a prepare
-	sudo bash /media/cdrom/VBoxLinuxAdditions.run --nox11
+	# || ture - continue bash schrip on error
+	sudo bash /media/cdrom/VBoxLinuxAdditions.run --nox11 || true
 	sudo adduser $USER vboxsf
 }
 
 grubcon()	# Grub configurations 			#
 {
 	fname='/etc/default/grub'
-	sudo cp $fname "$fname.bak"
-	sudo cp "$fname.org" $fname
-	sudo sed -ri "s/^GRUB_TIMEOUT=.$/\
-### Configurations added by $USER #### \n\
-GRUB_TIMEOUT_STYLE=hidden\n\
-### end ###/g" $fname
+	sudo mv $fname "$fname.bak"
+	sudo cp $spath/config/grub $fname
 	sudo update-grub
 }
 
@@ -193,7 +219,7 @@ install()	# Install osmini			#
 	sourcelist
 	xmini
 	i3wm
-	# grubcon
+	grubcon
 	autologin
 	progs
 	vboxguest

@@ -38,8 +38,6 @@ cd Linux
 bash OSMini.bash
 sudo reboot
 git clone http://github.com/nambidurai/CSharpPractice
-dotnet new sln
-dotnet sln add **/*.csproj
 dotnet sln add
 dotnet sln remove
 dotnet sln list
@@ -59,27 +57,17 @@ sudo cp /usr/lib/x86_64-linux-gnu/libcrypto.so.1.1 /usr/lib/x86_64-linux-gnu/lib
 xdg-open .bash_history 
 bash repos/Linux/OSMini.bash 
 donet run
-code -r .
 ip addr
 ip a
 curl ifconfig.me
-alsamixer
 code --list-extensions | xargs -L 1 echo code --install-extension
 HISTCONTROL=ignoreboth:erasedups
 HISTIGNORE="df*:free*:cd*:ls*:clear:exit*:*reboot:*poweroff:mkdir*:alsamixer"
-GRUB_DEFAULT="0"
-GRUB_TIMEOUT="0"
-GRUB_HIDDEN_TIMEOUT="0"
-GRUB_DISABLE_OS_PROBER="true"
-GRUB_DISTRIBUTOR="`lsb_release -i -s 2> /dev/null || echo Debian`"
-GRUB_CMDLINE_LINUX_DEFAULT="quiet loglevel=3 fsck.mode=skip vt.global_cursor_default=0"
-GRUB_CMDLINE_LINUX=""
 sudo apt install --no-install-recommends ./dbeaver-ce_7.2.0_amd64.deb 
 i3-msg exit
 i3-msg -t get_workspace
 dbeaver &
 arecord -l
-arecord -L
 sudo apt install --no-install-recommends neovim python-neovim python3-neovim xclip
 sudo apt install --no-install-recommends javascript-common
 sudo apt install --no-install-recommends nodejs
@@ -105,3 +93,22 @@ cd fonts
 ./install.sh 
 cd ..
 rm -rf fonts
+sudo vi /etc/apt/sources.list
+sudo apt purge gcc-8-base
+uname -sr
+sudo dpkg -l | grep "linux-image"
+sudo apt install bash-completion
+sudo apt install remove --purge linux-image-4.19.0-12-amd64
+sudo apt remove --purge linux-image-amd64 
+sudo dpkg -l | grep "linux-headers"
+sudo dpkg-reconfigure console-setup
+sudo apt install --no-install-recommends git ca-certificates
+sudo apt install --no-install-recommends neovim python3-neovim xclip
+wget --quiet -O - https://deb.nodesource.com/gpgkey/nodesource.gpg.key | sudo apt-key add -
+sudo pip install pynvim
+sudo pip install --upgrade pynvim
+sudo python3.8 -m pip install --upgrade neovim
+fc-list
+sudo dpkg-reconfigure fontconfig-config
+vim .config/nvim/init.vim 
+sudo apt install --no-install-recommends openssh-server ncurses-term
