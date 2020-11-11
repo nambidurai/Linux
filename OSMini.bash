@@ -8,7 +8,7 @@ set -e
 # get scrpit directory name
 spath=$(dirname "$0")
 AptInstall="sudo apt install --no-install-recommends -y -qq"
-AptRepos="sudo add-apt-repository -y -qq"
+AptRepos="sudo add-apt-repository -y"
 
 sourcelist()	# Edit apt source list			#
 {
@@ -35,36 +35,36 @@ sourcelist()	# Edit apt source list			#
 	# dotnet core
 	$AptRepos "deb [arch=amd64] https://packages.microsoft.com/debian/10/prod buster main"
 	# microsoft sql
-	$AptRepos "deb [arch=amd64,arm64,armhf] https://packages.microsoft.com/ubuntu/18.04/mssql-server-2019 bionic main"
+	# $AptRepos "deb [arch=amd64,arm64,armhf] https://packages.microsoft.com/ubuntu/18.04/mssql-server-2019 bionic main"
 	sudo apt update
 }
 
 xmini()		# Install minimal xserver		#
 {
-	AptInstall xserver-xorg-core xinit x11-xserver-utils
-	AptInstall xserver-xorg-input-all xserver-xorg-video-vmware
-	# AptInstall xfonts-100dpi xfonts-75dpi xfonts-base xfonts-scalable
-	# AptInstall fonts-dejavu
-	# AptInstall fonts-terminus xfonts-terminus xfont-terminus-oblique
-	AptInstall fonts-taml
+	$AptInstall xserver-xorg-core xinit x11-xserver-utils
+	$AptInstall xserver-xorg-input-all xserver-xorg-video-vmware
+	# $AptInstall xfonts-100dpi xfonts-75dpi xfonts-base xfonts-scalable
+	$AptInstall fonts-dejavu
+	# $AptInstall fonts-terminus xfonts-terminus xfont-terminus-oblique
+	$AptInstall fonts-taml
 	# Sound
-	AptInstall alsa-utils
+	$AptInstall alsa-utils
 	# 3d direct acceleration
-	AptInstall libgl1-mesa-dri mesa-utils
+	$AptInstall libgl1-mesa-dri mesa-utils
 }
 
 i3wm()		# Install i3 window manager		#
 {
 	# tilting window manager
-	AptInstall i3
+	$AptInstall i3
 	# terminal emulator
-	AptInstall rxvt-unicode
+	$AptInstall rxvt-unicode
 	# daemon and tools to store session passwords and other sensitive info.
-	AptInstall gnome-keyring
+	$AptInstall gnome-keyring
 	# PAM module to unlock the GNOME keyring upon login
-	AptInstall libpam-gnome-keyring
+	$AptInstall libpam-gnome-keyring
 	# authentication agent for PolicyKit
-	AptInstall policykit-1-gnome
+	$AptInstall policykit-1-gnome
 	# copy configuration
 	# make the required directories
 	mkdir -p ~/.config/i3 ~/.config/urxvt
@@ -80,11 +80,11 @@ i3wm()		# Install i3 window manager		#
 progs()		# Install user programs			#
 {
 	# standard utilities
-	AptInstall ca-certificates bash-completion
+	$AptInstall ca-certificates bash-completion
 	# google chrome
-	AptInstall google-chrome-stable
+	$AptInstall google-chrome-stable upower
 	# vssode
-	AptInstall code libxtst6
+	$AptInstall code libxtst6
 	# install vscode extensions
 	code --install-extension vscode-icons-team.vscode-icons
 	code --install-extension streetsidesoftware.code-spell-checker
@@ -93,29 +93,29 @@ progs()		# Install user programs			#
 	code --install-extension k--kato.docomment
 	code --install-extension jmrog.vscode-nuget-package-manager
 	code --install-extension fernandoescolar.vscode-solution-explorer
-	code --list-extensions | xargs -L 1 echo code --install-extension
+	# code --list-extensions | xargs -L 1 echo code --install-extension
 	# copy settings.jason
 	cp $spath/config/settings.json ~/.config/Code/User/
 	# dotnet core
-	AptInstall dotnet-sdk-3.1
+	$AptInstall dotnet-sdk-3.1
 	# sqlite
-	AptInstall sqlite3
+	$AptInstall sqlite3
 	# mssql
-	# AptInstall mssql-server
-	# AptInstall mssql-tools unixodbc-dev
+	# $AptInstall mssql-server
+	# $AptInstall mssql-tools unixodbc-dev
 	# add to path
 	# echo 'export PATH="$PATH:/opt/mssql-tools/bin"' >> ~/.bash_profile
 	# sudo /opt/mssql/bin/mssql-conf setup
 	# other utilites
-	# AptInstall bleachbit unzip
+	# $AptInstall bleachbit unzip
 	# for FAT filesystem
-	# AptInstall python-gtk2 exfat-fuse exfat-utils
+	# $AptInstall python-gtk2 exfat-fuse exfat-utils
 }
 
 vboxguest()	# Install virtualbox guest additions 	#
 {
 	sudo mount /dev/sr0 /media/cdrom
-	AptInstall build-essential dkms linux-headers-$(uname -r) module-assistant
+	$AptInstall build-essential dkms linux-headers-$(uname -r) module-assistant
 	sudo m-a prepare
 	# || ture - continue bash schrip on error
 	sudo bash /media/cdrom/VBoxLinuxAdditions.run --nox11 || true
@@ -212,6 +212,7 @@ copycon()	# Copy major configurations files	#
 	yes | cp -rf ~/.Xresources $spath/config/Xresources
 	yes | cp -rf ~/.config/urxvt/urxvt $spath/config/urxvt
 	yes | cp -rf ~/.config/Code/User/settings.json $spath/config/
+	yes | cp -rf /etc/default/grub $spath/config/
 }
 
 install()	# Install osmini			#

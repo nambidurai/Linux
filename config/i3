@@ -7,7 +7,6 @@
 # bindsym $mod+Shift+r restart
 
 # Font for window titles and bar
-# font pango:monospace 81
 font pango:DejaVu Sans Mono 16
 
 # Window border size o and no title bar
@@ -112,7 +111,9 @@ mode "$MainMenu" {
         # restart i3 inplace 
         bindsym r restart
         # poweroff
-        bindsym p exec systemctl poweroff
+        # i3-nagbar [-m <message>] [-b <button> <action>] [-B <button> <action>] [-t warning|error] [-f <font>] [-v]
+        bindsym p exec "i3-nagbar -m 'Do you want to shutdown?' -t warning -b 'yes' 'systemctl poweroff' -f 'pango:DejaVu Sans Mono 12'"
+       
 
         # back to normal: Escape or Enter
         bindcode 133 mode "default"
