@@ -7,46 +7,41 @@ set -e
 # Shortcut or alias
 # get scrpit directory name
 spath=$(dirname "$0")
-AptInstall="sudo apt install --no-install-recommends -y -qq"
-AptRepos="sudo add-apt-repository -y"
+AptInstall="sudo apt install --no-install-recommends -y"
 
 sourcelist()	# Edit apt source list			#
 {
-	# use the debian source list generator link below to find your nearest repo
-	# https://debgen.simplylinux.ch
-	# options -sy = include source and confirm yes
-	$AptInstall software-properties-common curl wget apt-transport-https dirmngr gnupg
-	sudo mv /etc/apt/sources.list /etc/apt/sources.list.bak
-	sudo touch /etc/apt/sources.list
-	$AptRepos "deb http://deb.debian.org/debian/ stable main contrib non-free"
-	$AptRepos "deb http://deb.debian.org/debian/ stable-updates main contrib non-free"
-	$AptRepos "deb http://deb.debian.org/debian-security stable/updates main"
-	$AptRepos "deb http://ftp.debian.org/debian buster-backports main"
-	# GPG keys
-	# google chrome
-	wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
-	# vscode
-	wget -q -O - https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add -
+	$AptInstall curl wget apt-transport-https dirmngr gnupg
+	# Debian respos
+	sudo cp $spath/config/sources.list /etc/apt/
+
+	# 3rd party repos & GPG keys
+	# sudo apt-key adv --fetch-keys <https:url>
+	# sudo apt-key adv --fetch-keys <hkp:keyserver url> --recv-keys <keys>
+	# google
+	sudo apt-key adv --fetch-keys https://dl.google.com/linux/linux_signing_key.pub
+	# microsoft
+	sudo apt-key adv --fetch-keys https://packages.microsoft.com/keys/microsoft.asc
+	# nodesource
+	sudo apt-key adv --fetch-keys https://deb.nodesource.com/gpgkey/nodesource.gpg.key
+
 	# 3rd party repos
 	# google chrome
-	$AptRepos "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main"
+	sudo cp $spath/config/google-chrome.list /etc/apt/sources.list.d/
 	# vscode
-	$AptRepos "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main"
-	# dotnet core
-	$AptRepos "deb [arch=amd64] https://packages.microsoft.com/debian/10/prod buster main"
-	# microsoft sql
-	# $AptRepos "deb [arch=amd64,arm64,armhf] https://packages.microsoft.com/ubuntu/18.04/mssql-server-2019 bionic main"
-	sudo apt update
+	sudo cp $spath/config/vscode.list /etc/apt/sources.list.d/
+	# dotnet sdk
+	sudo cp $spath/config/dotnet.list /etc/apt/sources.list.d/
+	# nodejs and npm
+	sudo cp $spath/config/nodesource.list /etc/apt/sources.list.d/
+
+	sysupdate
 }
 
 xmini()		# Install minimal xserver		#
 {
 	$AptInstall xserver-xorg-core xinit x11-xserver-utils
 	$AptInstall xserver-xorg-input-all xserver-xorg-video-vmware
-	# $AptInstall xfonts-100dpi xfonts-75dpi xfonts-base xfonts-scalable
-	$AptInstall fonts-dejavu
-	# $AptInstall fonts-terminus xfonts-terminus xfont-terminus-oblique
-	$AptInstall fonts-taml
 	# Sound
 	$AptInstall alsa-utils
 	# 3d direct acceleration
@@ -56,13 +51,15 @@ xmini()		# Install minimal xserver		#
 i3wm()		# Install i3 window manager		#
 {
 	# tilting window manager
-	$AptInstall i3
+	$AptInstall i3 xfonts-base fonts-dejavu
 	# terminal emulator
-	$AptInstall rxvt-unicode
+	$AptInstall rxvt-unicode ncurses-term 
 	# daemon and tools to store session passwords and other sensitive info.
 	$AptInstall gnome-keyring
 	# PAM module to unlock the GNOME keyring upon login
 	$AptInstall libpam-gnome-keyring
+	# For using GNOME keyring as a certificate database
+	$AptInstall gnome-keyring-pkcs11
 	# authentication agent for PolicyKit
 	$AptInstall policykit-1-gnome
 	# copy configuration
@@ -79,8 +76,13 @@ i3wm()		# Install i3 window manager		#
 
 progs()		# Install user programs			#
 {
+	# fonts
+	$AptInstall fonts-taml
 	# standard utilities
-	$AptInstall ca-certificates bash-completion
+	$AptInstall ca-certificates bash-completion fzf
+	# $AptInstall bleachbit unzip
+	# FAT filesystem
+	# $AptInstall python-gtk2 exfat-fuse exfat-utils
 	# google chrome
 	$AptInstall google-chrome-stable upower
 	# vssode
@@ -98,18 +100,16 @@ progs()		# Install user programs			#
 	cp $spath/config/settings.json ~/.config/Code/User/
 	# dotnet core
 	$AptInstall dotnet-sdk-3.1
+	# nodejs and npm
+	# $AptInstall nodejs
 	# sqlite
-	$AptInstall sqlite3
+	# $AptInstall sqlite3
 	# mssql
 	# $AptInstall mssql-server
 	# $AptInstall mssql-tools unixodbc-dev
 	# add to path
 	# echo 'export PATH="$PATH:/opt/mssql-tools/bin"' >> ~/.bash_profile
 	# sudo /opt/mssql/bin/mssql-conf setup
-	# other utilites
-	# $AptInstall bleachbit unzip
-	# for FAT filesystem
-	# $AptInstall python-gtk2 exfat-fuse exfat-utils
 }
 
 vboxguest()	# Install virtualbox guest additions 	#
@@ -140,6 +140,7 @@ ExecStart=\
 ExecStart=-/sbin/agetty --skip-login --autologin '"$USER"' --noclear %I 38400 linux' $fpath/autologin.conf
 	sudo systemctl enable getty@tty1
 	usrprofile
+	usrbashrc
 }
 
 usrprofile()	# User profile configurations		#
@@ -148,8 +149,18 @@ usrprofile()	# User profile configurations		#
 PATH="/sbin:$PATH"\
 if [[ ! ${DISPLAY} && ${XDG_VTNR} == 1 ]]; then\
     exec startx > /dev/null 2>&1\
-fi' ~/.profile 
+fi
+' ~/.profile 
 	# . ~/.profile
+}
+
+usrbashrc()	# User bash configurations		#
+{
+	sed -i '$a # added by '"$USER"'\
+HISTCONTROL=ignoreboth:erasedups
+HISTIGNORE="df*:free*:cd*:ls*:clear:exit*:*reboot:*poweroff:mkdir*:alsamixer:dotnet*"
+source /usr/share/doc/fzf/examples/key-bindings.bash
+' ~/.bashrc 
 }
 
 gitcon()	# Github configurations			#
@@ -225,6 +236,7 @@ install()	# Install osmini			#
 	progs
 	vboxguest
 }
+
 help()		# Help					#
 {
 	clear
@@ -233,6 +245,7 @@ help()		# Help					#
 	echo "* Enter only scrpit name, leave the paranthesis ()"
 	echo "You can also use other terminal commands like clear, cd, mkdir etc.."
 }
+
 while :
 do
 	echo -e "\e[91mWARNING These scrpits can damage your debian system, if your unsure DO NOT USE !\e[0m"
