@@ -51,7 +51,7 @@ xmini()		# Install minimal xserver		#
 i3wm()		# Install i3 window manager		#
 {
 	# tilting window manager
-	$AptInstall i3 xfonts-base fonts-dejavu
+	$AptInstall i3-wm xfonts-base fonts-dejavu
 	# terminal emulator
 	$AptInstall rxvt-unicode ncurses-term 
 	# daemon and tools to store session passwords and other sensitive info.
@@ -79,7 +79,8 @@ progs()		# Install user programs			#
 	# fonts
 	$AptInstall fonts-taml
 	# standard utilities
-	$AptInstall ca-certificates bash-completion fzf
+	$AptInstall bash-completion fzf
+	$AptInstall python openssh-client
 	# $AptInstall bleachbit unzip
 	# FAT filesystem
 	# $AptInstall python-gtk2 exfat-fuse exfat-utils
@@ -157,8 +158,8 @@ fi
 usrbashrc()	# User bash configurations		#
 {
 	sed -i '$a # added by '"$USER"'\
-HISTCONTROL=ignoreboth:erasedups
-HISTIGNORE="df*:free*:cd*:ls*:clear:exit*:*reboot:*poweroff:mkdir*:alsamixer:dotnet*"
+HISTCONTROL=ignoreboth:erasedups\
+HISTIGNORE="df*:free*:cd*:ls*:clear:exit*:*reboot:*poweroff:mkdir*:alsamixer:dotnet*"\
 source /usr/share/doc/fzf/examples/key-bindings.bash
 ' ~/.bashrc 
 }
@@ -231,10 +232,10 @@ install()	# Install osmini			#
 	sourcelist
 	xmini
 	i3wm
+	vboxguest
+	progs
 	grubcon
 	autologin
-	progs
-	vboxguest
 }
 
 help()		# Help					#

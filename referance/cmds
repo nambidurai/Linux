@@ -102,3 +102,4 @@ vim .config/nvim/init.vim
 sudo apt install --no-install-recommends openssh-server ncurses-term
 sudo apt-key list
 tasksel --task-packages standard
+sudo apt install --no-install-recommends git ca-certificates
