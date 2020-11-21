@@ -14,6 +14,8 @@ sourcelist()	# Edit apt source list			#
 	$AptInstall curl wget apt-transport-https dirmngr gnupg
 	# Debian respos
 	sudo cp $spath/config/sources.list /etc/apt/
+	# Apt conf file
+	sudo cp $spath/config/aptmini.conf /etc/apt/apt.conf.d/
 
 	# 3rd party repos & GPG keys
 	# sudo apt-key adv --fetch-keys <https:url>
@@ -158,9 +160,10 @@ fi
 usrbashrc()	# User bash configurations		#
 {
 	sed -i '$a # added by '"$USER"'\
-HISTCONTROL=ignoreboth:erasedups\
-HISTIGNORE="df*:free*:cd*:ls*:clear:exit*:*reboot:*poweroff:mkdir*:alsamixer:dotnet*"\
-source /usr/share/doc/fzf/examples/key-bindings.bash
+HISTCONTROL="erasedups:ignoreboth"\
+HISTIGNORE="ls*:cd*:df*:exit:clear:*reboot:*poweroff:mkdir*"\
+source /usr/share/doc/fzf/examples/key-bindings.bash\
+shopt -s globstar
 ' ~/.bashrc 
 }
 
@@ -210,8 +213,10 @@ sysupdate()	# Update apt cache and debian		#
 
 sysclean()	# Remove residual install files 	#
 {
+	# sudo apt purge task-laptop
 	sudo apt remove --purge -y `dpkg -l | grep '^rc' | awk '{print $2}'`
 	sudo apt autoremove -y && sudo apt autoclean -y
+	sudo rm -rf /usr/share/man/??_*
 	rm -rf ~/.local/share/Trash/*
 	rm -rf ~/.local/share/recently-used.xbel
 	touch ~/.local/share/recently-used.xbel
@@ -224,7 +229,7 @@ copycon()	# Copy major configurations files	#
 	yes | cp -rf ~/.Xresources $spath/config/Xresources
 	yes | cp -rf ~/.config/urxvt/urxvt $spath/config/urxvt
 	yes | cp -rf ~/.config/Code/User/settings.json $spath/config/
-	yes | cp -rf /etc/default/grub $spath/config/
+	# yes | cp -rf /etc/default/grub $spath/config/
 }
 
 install()	# Install osmini			#

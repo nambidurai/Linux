@@ -103,3 +103,9 @@ sudo apt install --no-install-recommends openssh-server ncurses-term
 sudo apt-key list
 tasksel --task-packages standard
 sudo apt install --no-install-recommends git ca-certificates
+uname -sr
+dpkg -l | grep linux-image | awk '{print$2}'
+sudo apt purge linux-image-4.19.0-11-amd64 
+sudo apt purge linux-image-amd64 
+dpkg-query -Wf '${Package;-40}${Essential}\n' | grep yes
+sudo apt-config dump

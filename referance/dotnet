@@ -1,4 +1,9 @@
+dotnet --version
+dotnet /usr/share/dotnet/sdk/3.1.300/Roslyn/bincore/csc.dll -langversion:?
+./executable
+dotnet executable.dll arg0 arg1 arg2 ...
+dotnet run arg0 arg1 arg2 ...
+dotnet new sln -o CSharp
 dotnet new console -o ConsoleApp
-dotnet new sln
 dotnet sln add **/*.csproj
 shopt -s globstar
