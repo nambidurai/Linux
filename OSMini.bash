@@ -42,31 +42,27 @@ sourcelist()	# Edit apt source list			#
 
 xmini()		# Install minimal xserver		#
 {
-	# $AptInstall xserver-xorg-core xinit x11-xserver-utils
-	# $AptInstall xserver-xorg-input-all xserver-xorg-video-vmware
-	$AptInstall xserver-xorg-video-dummy xserver-xorg-input-void 
-	$AptInstall xinit
-	$AptInstall xserver-xorg-video-vmware
-	$AptInstall xserver-xorg-input-mouse
-	$AptInstall xserver-xorg-input-kbd
+	$AptInstall xserver-xorg-core xinit x11-xserver-utils
+	$AptInstall xserver-xorg-input-all xserver-xorg-video-vmware
 	# Sound
 	$AptInstall alsa-utils
 	# 3d direct acceleration
 	$AptInstall libgl1-mesa-dri mesa-utils
+	$AptInstall libpam-systemd
 }
 
 i3wm()		# Install i3 window manager		#
 {
 	# tilting window manager
-	$AptInstall i3-wm xfonts-base fonts-dejavu
+	$AptInstall i3-wm fonts-dejavu
 	# terminal emulator
 	$AptInstall rxvt-unicode ncurses-term 
 	# daemon and tools to store session passwords and other sensitive info.
-	$AptInstall gnome-keyring
+	# $AptInstall gnome-keyring
 	# PAM module to unlock the GNOME keyring upon login
-	$AptInstall libpam-gnome-keyring
+	# $AptInstall libpam-gnome-keyring
 	# For using GNOME keyring as a certificate database
-	$AptInstall gnome-keyring-pkcs11
+	# $AptInstall gnome-keyring-pkcs11
 	# authentication agent for PolicyKit
 	$AptInstall policykit-1-gnome
 	# copy configuration
