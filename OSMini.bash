@@ -42,8 +42,13 @@ sourcelist()	# Edit apt source list			#
 
 xmini()		# Install minimal xserver		#
 {
-	$AptInstall xserver-xorg-core xinit x11-xserver-utils
-	$AptInstall xserver-xorg-input-all xserver-xorg-video-vmware
+	# $AptInstall xserver-xorg-core xinit x11-xserver-utils
+	# $AptInstall xserver-xorg-input-all xserver-xorg-video-vmware
+	$AptInstall xserver-xorg-video-dummy xserver-xorg-input-void 
+	$AptInstall xinit
+	$AptInstall xserver-xorg-video-vmware
+	$AptInstall xserver-xorg-input-mouse
+	$AptInstall xserver-xorg-input-kbd
 	# Sound
 	$AptInstall alsa-utils
 	# 3d direct acceleration
@@ -97,7 +102,7 @@ progs()		# Install user programs			#
 	code --install-extension jchannon.csharpextensions
 	code --install-extension k--kato.docomment
 	code --install-extension jmrog.vscode-nuget-package-manager
-	code --install-extension fernandoescolar.vscode-solution-explorer
+	# code --install-extension fernandoescolar.vscode-solution-explorer
 	# code --list-extensions | xargs -L 1 echo code --install-extension
 	# copy settings.jason
 	cp $spath/config/settings.json ~/.config/Code/User/

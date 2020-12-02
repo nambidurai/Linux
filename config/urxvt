@@ -4,11 +4,11 @@ URxvt.perl-ext:
 URxvt.perl-ext-common:
 
 !Fonts
-URxvt*font:           xft:DejaVu Sans Mono:style=Regular:size=17
-URxvt*imFont:         xft:DejaVu Sans Mono:style=Regular:size=17
-URxvt*boldFont:       xft:DejaVu Sans Mono:style=Regular:size=17
-URxvt*italicFont:     xft:DejaVu Sans Mono:style=Oblique:size=17
-URxvt*boldItalicFont: xft:DejaVu Sans Mono:style=Bold Italic:size=17
+URxvt*font:           xft:DejaVu Sans Mono:style=Regular:size=16
+URxvt*imFont:         xft:DejaVu Sans Mono:style=Regular:size=16
+URxvt*boldFont:       xft:DejaVu Sans Mono:style=Regular:size=16
+URxvt*italicFont:     xft:DejaVu Sans Mono:style=Oblique:size=16
+URxvt*boldItalicFont: xft:DejaVu Sans Mono:style=Bold Italic:size=16
 URxvt*lineSpace: 1
 URxvt*letterSpace: 1 
 URxvt.cursorBlink: false
