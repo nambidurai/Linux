@@ -109,3 +109,4 @@ sudo apt purge linux-image-4.19.0-11-amd64
 sudo apt purge linux-image-amd64 
 dpkg-query -Wf '${Package;-40}${Essential}\n' | grep yes
 sudo apt-config dump
+sudo rcvboxadd setup
