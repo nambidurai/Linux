@@ -7,7 +7,7 @@ set -e
 # Shortcut or alias
 # get scrpit directory name
 spath=$(dirname "$0")
-AptInstall="sudo apt install --no-install-recommends -y"
+AptInstall="sudo apt install -y"
 
 sourcelist()	# Edit apt source list			#
 {
@@ -48,23 +48,20 @@ xmini()		# Install minimal xserver		#
 	$AptInstall alsa-utils
 	# 3d direct acceleration
 	$AptInstall libgl1-mesa-dri mesa-utils
+	# Pluggable Authentication Module (PAM)
 	$AptInstall libpam-systemd
+	# authentication agent for PolicyKit
+	$AptInstall policykit-1-gnome
+	# fonts
+	# $AptInstall fonts-dejavu fonts-taml
 }
 
 i3wm()		# Install i3 window manager		#
 {
 	# tilting window manager
-	$AptInstall i3-wm fonts-dejavu
+	$AptInstall i3-wm
 	# terminal emulator
 	$AptInstall rxvt-unicode ncurses-term 
-	# daemon and tools to store session passwords and other sensitive info.
-	# $AptInstall gnome-keyring
-	# PAM module to unlock the GNOME keyring upon login
-	# $AptInstall libpam-gnome-keyring
-	# For using GNOME keyring as a certificate database
-	# $AptInstall gnome-keyring-pkcs11
-	# authentication agent for PolicyKit
-	$AptInstall policykit-1-gnome
 	# copy configuration
 	# make the required directories
 	mkdir -p ~/.config/i3 ~/.config/urxvt
@@ -79,8 +76,6 @@ i3wm()		# Install i3 window manager		#
 
 progs()		# Install user programs			#
 {
-	# fonts
-	$AptInstall fonts-taml
 	# standard utilities
 	$AptInstall bash-completion fzf
 	$AptInstall python openssh-client
@@ -214,7 +209,7 @@ sysupdate()	# Update apt cache and debian		#
 
 sysclean()	# Remove residual install files 	#
 {
-	# sudo apt purge task-laptop
+	sudo apt purge task-laptop
 	sudo apt remove --purge -y `dpkg -l | grep '^rc' | awk '{print $2}'`
 	sudo apt autoremove -y && sudo apt autoclean -y
 	sudo rm -rf /usr/share/man/??_*

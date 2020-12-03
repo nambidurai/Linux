@@ -110,3 +110,6 @@ sudo apt purge linux-image-amd64
 dpkg-query -Wf '${Package;-40}${Essential}\n' | grep yes
 sudo apt-config dump
 sudo rcvboxadd setup
+systemctl status
+sudo mount -t cifs -o rw,guest,vers=1.0 //192.168.2.1/Crucial\ X6 ~/nas
+sudo apt install --simulate xfce4
