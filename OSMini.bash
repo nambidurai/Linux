@@ -31,7 +31,7 @@ sourcelist()	# Edit apt source list			#
 	# google chrome
 	sudo cp $spath/config/google-chrome.list /etc/apt/sources.list.d/
 	# vscode
-	sudo cp $spath/config/vscode.list /etc/apt/sources.list.d/
+	# sudo cp $spath/config/vscode.list /etc/apt/sources.list.d/
 	# dotnet sdk
 	sudo cp $spath/config/dotnet.list /etc/apt/sources.list.d/
 	# nodejs and npm
@@ -47,11 +47,11 @@ xmini()		# Install minimal xserver		#
 	# Sound
 	$AptInstall alsa-utils
 	# 3d direct acceleration
-	$AptInstall libgl1-mesa-dri mesa-utils
+	# $AptInstall libgl1-mesa-dri mesa-utils
 	# Pluggable Authentication Module (PAM)
-	$AptInstall libpam-systemd
+	# $AptInstall libpam-systemd
 	# authentication agent for PolicyKit
-	$AptInstall policykit-1-gnome
+	# $AptInstall policykit-1-gnome
 	# fonts
 	# $AptInstall fonts-dejavu fonts-taml
 }
@@ -61,16 +61,18 @@ i3wm()		# Install i3 window manager		#
 	# tilting window manager
 	$AptInstall i3-wm
 	# terminal emulator
-	$AptInstall rxvt-unicode ncurses-term 
+	# $AptInstall rxvt-unicode ncurses-term
+	$AptInstall lxterminal
 	# copy configuration
 	# make the required directories
-	mkdir -p ~/.config/i3 ~/.config/urxvt
+	# mkdir -p ~/.config/i3 ~/.config/urxvt
+	mkdir -p ~/.config/i3
 	# i3
 	cp $spath/config/i3 ~/.config/i3/config
 	# xresources
 	cp $spath/config/Xresources ~/.Xresources
 	# urxvt
-	cp $spath/config/urxvt ~/.config/urxvt/urxvt
+	# cp $spath/config/urxvt ~/.config/urxvt/urxvt
 	# xrdb -merge ~/.Xresources
 }
 
@@ -85,18 +87,18 @@ progs()		# Install user programs			#
 	# google chrome
 	$AptInstall google-chrome-stable upower
 	# vssode
-	$AptInstall code libxtst6
+	# $AptInstall code libxtst6
 	# install vscode extensions
-	code --install-extension vscode-icons-team.vscode-icons
-	code --install-extension streetsidesoftware.code-spell-checker
-	code --install-extension ms-dotnettools.csharp
-	code --install-extension jchannon.csharpextensions
-	code --install-extension k--kato.docomment
-	code --install-extension jmrog.vscode-nuget-package-manager
+	# code --install-extension vscode-icons-team.vscode-icons
+	# code --install-extension streetsidesoftware.code-spell-checker
+	# code --install-extension ms-dotnettools.csharp
+	# code --install-extension jchannon.csharpextensions
+	# code --install-extension k--kato.docomment
+	# code --install-extension jmrog.vscode-nuget-package-manager
 	# code --install-extension fernandoescolar.vscode-solution-explorer
 	# code --list-extensions | xargs -L 1 echo code --install-extension
 	# copy settings.jason
-	cp $spath/config/settings.json ~/.config/Code/User/
+	# cp $spath/config/settings.json ~/.config/Code/User/
 	# dotnet core
 	$AptInstall dotnet-sdk-3.1
 	# nodejs and npm
@@ -114,7 +116,8 @@ progs()		# Install user programs			#
 vboxguest()	# Install virtualbox guest additions 	#
 {
 	sudo mount /dev/sr0 /media/cdrom
-	$AptInstall build-essential dkms linux-headers-$(uname -r) module-assistant
+	# $AptInstall build-essential dkms linux-headers-$(uname -r) module-assistant
+	$AptInstall module-assistant
 	sudo m-a prepare
 	# || ture - continue bash schrip on error
 	sudo bash /media/cdrom/VBoxLinuxAdditions.run --nox11 || true
