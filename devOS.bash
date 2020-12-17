@@ -72,7 +72,12 @@ progs()		# Install user programs			#
 {
 	# standard utilities
 	$AptInstall bash-completion fzf
-	$AptInstall python openssh-client
+	# $AptInstall python openssh-client
+	$AptInstall neovim
+	# copy configuration
+        # make the required directories
+        mkdir -p ~/.config/nvim
+	cp $spath/config/init.vim ~/.config/nvim/
 	# FAT filesystem
 	# $AptInstall python-gtk2 exfat-fuse exfat-utils
 	# google chrome
@@ -205,6 +210,7 @@ copycon()	# Copy major configurations files	#
 	yes | cp -rf ~/.Xresources $spath/config/Xresources
 	yes | cp -rf ~/.config/i3/config $spath/config/i3
 	yes | cp -rf ~/.config/lxterminal/lxterminal.conf $spath/config/
+	yes | cp -rf ~/.config/nvim/init.vim $spath/config/
 	yes | cp -rf /etc/default/grub $spath/config/
 }
 
