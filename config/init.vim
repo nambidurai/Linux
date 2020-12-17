@@ -3,7 +3,7 @@ syntax enable
 filetype plugin on
 set t_Co=256
 set background=dark
-set mouse=a
+" set mouse=a
 set number
 set ruler
 set splitbelow 
