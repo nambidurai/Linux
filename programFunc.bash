@@ -19,6 +19,8 @@ editor1()	# Neovim 				#
 	sudo apt update
 	# nevovim
 	sudo apt install -y neovim
+	# install system clipboard
+	sudo apt install -y xsel
 	# python 2 and 3 dependencies
 	sudo apt install -y python python3
 	sudo apt install -y python-pip python3-pip
@@ -29,9 +31,10 @@ editor1()	# Neovim 				#
 	sudo apt install -y nodejs
 	sudo npm install -g neovim
 	# neovim configurations
-	# mkdir -p ~/.config/nvim
-	curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs /
+	# install vim-plug plugin manager
+	curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs \
 	https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+	# copy neovim configuraitons
 	cp $spath/config/init.vim ~/.config/nvim/
 }
 

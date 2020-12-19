@@ -4,10 +4,10 @@
 vboxguest()	# Install virtualbox guest additions 	#
 {
 	sudo mount /dev/sr0 /media/cdrom
-	$AptInstall build-essential dkms linux-headers-$(uname -r) module-assistant
-	$AptInstall module-assistant
+	sudo apt install -y build-essential dkms linux-headers-$(uname -r) module-assistant
+	sudo apt install -y module-assistant
 	sudo m-a prepare
-	# || ture - continue bash schrip on error
+	# || ture - continue bash scrpit on error
 	sudo bash /media/cdrom/VBoxLinuxAdditions.run --nox11 || true
 	sudo adduser $USER vboxsf
 }

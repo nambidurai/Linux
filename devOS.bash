@@ -18,8 +18,6 @@ install()	# Automated install sequence		#
 	coreOS
 	vboxguest
 	utilites
-	editor1
-	dotnetcore
 }
 
 end()		# Exit scrpit				#
