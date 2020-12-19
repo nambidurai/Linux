@@ -27,6 +27,7 @@ set splitbelow
 set splitright
 set nowrap
 set colorcolumn=80
+set hidden
 
 " checkhealth - python, ruby and nodejs modules
 let g:python_host_prog = expand("/usr/bin/python2.7")

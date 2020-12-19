@@ -1,7 +1,6 @@
 # i3 config file (v4)
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
-# To reset these settings to defaults, delete this file and re-run 
-# i3-config-wizard.
+# To reset these settings to defaults, delete this file and re-run i3-config-wizard.
 
 # Set the mod key
 # set $mod Mod4

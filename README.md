@@ -5,9 +5,9 @@ debian base i3 chromium
 
 ## Usage instructions
 ```
-Install Debian base (without GUI)
+Install minimal Debian without GUI
 wget -q https://github.com/nambidurai/Linux/archive/master.zip
 sudo apt install -y unzip
 unzip master.zip
-bash linux-master/OSMini.bash
+bash linux-master/devOS.bash
 ```
