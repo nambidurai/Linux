@@ -1,6 +1,7 @@
 # i3 config file (v4)
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
-# To reset these settings to defaults, delete this file and re-run i3-config-wizard.
+# To reset these settings to defaults, delete this file and re-run 
+# i3-config-wizard.
 
 # Set the mod key
 # set $mod Mod4
@@ -16,9 +17,9 @@ default_border none
 # exec - app starts once on initial startup
 # exec_always - app starts on every reload
 # background color
-exec_always --no-startup-id xsetroot -solid "#1E1E1E"
+exec_always --no-startup-id xsetroot -solid "#1d2021"
 # Sudo password dialog
-exec_always --no-startup-id /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1 &
+# exec_always --no-startup-id /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1 &
 # Google Chrome
 exec --no-startup-id google-chrome &
 
@@ -80,7 +81,7 @@ mode "$WindowMenu"{
 }
 
 # Main menu
-set $MainMenu [t]erminal [g]oogle-chrome [c]ode [w]indow [1,2,3,^]workspace [q]uit [r]eload [p]oweroff
+set $MainMenu [t]erminal [g]oogle-chrome [w]indow [1,2,3,^]workspace [q]uit [r]eload [p]oweroff
 # use the command below to keycodes
 # xmodmap -pk | grep -i alt
 # xmodmap -pk | grep -i super
@@ -93,8 +94,6 @@ mode "$MainMenu" {
         bindsym t exec i3-sensible-terminal, mode "default"
         # google Chrome
         bindsym g exec google-chrome, mode "default"
-        # vscode
-        bindsym c exec code, mode "default"
 
         # switch to workspace
         bindsym 1 workspace $ws1, mode "default"
@@ -112,8 +111,7 @@ mode "$MainMenu" {
         bindsym r restart
         # poweroff
         # i3-nagbar [-m <message>] [-b <button> <action>] [-B <button> <action>] [-t warning|error] [-f <font>] [-v]
-        bindsym p exec "i3-nagbar -m 'Do you want to shutdown?' -t warning -b 'yes' 'systemctl poweroff' -f 'pango:DejaVu Sans Mono 12'"
-       
+        bindsym p exec "i3-nagbar -m 'Do you want to shutdown?' -t warning -b 'yes' 'systemctl poweroff' -f 'pango:DejaVu Sans Mono 12'", mode "default"
 
         # back to normal: Escape or Enter
         bindcode 133 mode "default"

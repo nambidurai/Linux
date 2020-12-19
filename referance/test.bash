@@ -1,6 +1,6 @@
 #!/bin/bash
 # exit when any command fails
-set -e
+# set -e
 # keep track of the last executed command
 # trap 'last_command=$current_command; current_command=$BASH_COMMAND' DEBUG
 # echo an error message before exiting
@@ -12,8 +12,8 @@ set -e
 # super slient install
 # apt install -y -qq -o=Dpkg::Use-Pty=0 <package name>
 
-AptInstall="sudo apt install --no-install-recommends -y -qq"
-$AptInstall mousepad
+# AptInstall="sudo apt install --no-install-recommends -y -qq"
+# $AptInstall mousepad
 
 # testfunc()
 # {
@@ -25,6 +25,11 @@ $AptInstall mousepad
 # testfunc
 # ls --fakeOption || true
 
-echo "end"
+# echo "end"
+
+testfunc()	# test functon 		#
+{
+	echo "test function"
+}
 
 
