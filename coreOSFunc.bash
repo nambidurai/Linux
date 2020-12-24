@@ -14,9 +14,9 @@ coreOS()	# Install core os			#
 	# 3d direct acceleration
 	# sudo apt install -y libgl1-mesa-dri mesa-utils
 	# Privileged access to login user - no authentication agent
-	sudo apt install -y policykit-1
+	# sudo apt install -y policykit-1
 	# Privileged access to desktop apps - authentication agent 
-	# sudo apt install -y policykit-1-gnome
+	sudo apt install -y policykit-1-gnome
 	# fonts
 	sudo apt install -y fonts-dejavu fonts-powerline fonts-taml
 	# tilting window manager

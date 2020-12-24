@@ -3,7 +3,7 @@
 
 utilites()	# Standard utilites 			#
 {
-	sudo apt install -y bash-completion fzf
+	sudo apt install -y bash-completion fzf ncurses-term  
 	# sudo apt install -y openssh-client
 	echo source /usr/share/doc/fzf/examples/key-bindings.bash >> ~/.bashrc
 	source ~/.bashrc

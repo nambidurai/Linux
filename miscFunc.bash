@@ -23,7 +23,8 @@ copycon()	# Copy major configurations files	#
 	yes | cp -rf ~/.Xresources $spath/config/Xresources
 	yes | cp -rf ~/.config/i3/config $spath/config/i3
 	yes | cp -rf ~/.config/lxterminal/lxterminal.conf $spath/config/
-	yes | cp -rf ~/.config/nvim/init.vim $spath/config/
+	yes | cp -rf ~/.config/Code/User/settings.json $spath/config/
+	# yes | cp -rf ~/.config/nvim/init.vim $spath/config/
 	# yes | cp -rf /etc/default/grub $spath/config/
 }
 
