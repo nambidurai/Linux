@@ -1,3 +1,4 @@
+
 #!/bin/bash
 # Developed by nambi durai ganesan
 
@@ -10,7 +11,7 @@ sysclean()	# Remove residual install files 	#
 {
 	sudo apt purge task-laptop
 	sudo apt remove --purge -y `dpkg -l | grep '^rc' | awk '{print $2}'`
-	sudo apt autoremove i-y && sudo apt autoclean -y
+	sudo apt autoremove -y && sudo apt autoclean -y
 	sudo rm -rf /usr/share/man/??_*
 	rm -rf ~/.local/share/Trash/*
 	rm -rf ~/.local/share/recently-used.xbel

@@ -3,7 +3,9 @@
 
 utilites()	# Standard utilites 			#
 {
-	sudo apt install -y bash-completion fzf ncurses-term  
+	sudo apt install -y bash-completion fzf ncurses-term
+	# install system clipboard
+	sudo apt install -y xsel
 	# sudo apt install -y openssh-client
 	echo source /usr/share/doc/fzf/examples/key-bindings.bash >> ~/.bashrc
 	source ~/.bashrc
@@ -19,8 +21,6 @@ editor1()	# Neovim 				#
 	sudo apt update
 	# nevovim
 	sudo apt install -y neovim
-	# install system clipboard
-	sudo apt install -y xsel
 	# python 2 and 3 dependencies
 	sudo apt install -y python python3
 	sudo apt install -y python-pip python3-pip

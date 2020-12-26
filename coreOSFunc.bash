@@ -40,7 +40,6 @@ coreOS()	# Install core os			#
 	usrprofile
 	# user bashrc
 	usrbashrc
-
 }
 
 grubcon()	# Grub configurations
@@ -77,7 +76,7 @@ usrbashrc()	# User bash configurations
 {
 	sed -i '$a # added by '"$USER"'\
 HISTCONTROL="erasedups:ignoreboth"\
-HISTIGNORE="ls*:cd*:df*:exit:clear:*reboot:*poweroff:mkdir*"\
+HISTIGNORE="ls*:cd*:df*:exit:clear:*reboot:*poweroff:mkdir*:dotnet*"\
 shopt -s globstar
 ' ~/.bashrc 
 }
