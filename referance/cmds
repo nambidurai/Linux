@@ -117,4 +117,10 @@ sudo dpkg-reconfigure tzdata
 sudo apt install --no-install-recommends git ca-certificates
 mkdir repos
 git clone https://github.com/nambidurai/linux
-bash repos/linux/devOS.bash 
+bash repos/linux/devOS.bash
+sudo mount -t cifs -o rw,guest,vers=1.0 //192.168.2.1/CrucialX6 /media/sf_network
+sudo dpkg -l | grep "linux-image"
+sudo dpkg -l | grep "linux-headers"
+sudo apt remove --purge linux-headers-4.19.0-13-amd64 
+sudo apt remove --purge linux-headers-4.19.0-13-common 
+sudo update-grub2
