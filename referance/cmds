@@ -103,24 +103,27 @@ sudo apt install --no-install-recommends openssh-server ncurses-term
 sudo apt-key list
 tasksel --task-packages standard
 sudo apt install --no-install-recommends git ca-certificates
-uname -sr
-dpkg -l | grep linux-image | awk '{print$2}'
-sudo apt purge linux-image-4.19.0-11-amd64 
-sudo apt purge linux-image-amd64 
 dpkg-query -Wf '${Package;-40}${Essential}\n' | grep yes
 sudo apt-config dump
 sudo rcvboxadd setup
 systemctl status
-sudo mount -t cifs -o rw,guest,vers=1.0 //192.168.2.1/Crucial\ X6 ~/nas
 sudo apt install --simulate xfce4
 sudo dpkg-reconfigure tzdata
 sudo apt install --no-install-recommends git ca-certificates
 mkdir repos
 git clone https://github.com/nambidurai/linux
 bash repos/linux/devOS.bash
-sudo mount -t cifs -o rw,guest,vers=1.0 //192.168.2.1/CrucialX6 /media/sf_network
+uname -sr
+dpkg -l | grep linux-image | awk '{print$2}'
 sudo dpkg -l | grep "linux-image"
 sudo dpkg -l | grep "linux-headers"
 sudo apt remove --purge linux-headers-4.19.0-13-amd64 
 sudo apt remove --purge linux-headers-4.19.0-13-common 
 sudo update-grub2
+git clone https://github.com/nambidurai/CSharpPractice
+sudo apt install cifs-utils
+sudo mkdir /media/sf_Network
+sudo mount -t cifs -o rw,guest,vers=1.0 //192.168.2.1/CrucialX6 /media/sf_Network
+sudo nano /etc/fstab
+//192.168.2.1/CrucialX6 /media/sf_Network cifs  guest,uid=1000,iocharset=utf8  0  0
+sudo mount -a
