@@ -125,5 +125,6 @@ sudo apt install cifs-utils
 sudo mkdir /media/sf_Network
 sudo mount -t cifs -o rw,guest,vers=1.0 //192.168.2.1/CrucialX6 /media/sf_Network
 sudo nano /etc/fstab
-//192.168.2.1/CrucialX6 /media/sf_Network cifs  guest,uid=1000,iocharset=utf8  0  0
+//192.168.2.1/CrucialX6     /media/sf_Network   cifs    guest,uid=1000,iocharset=utf8   0   0
+//192.168.2.1/CrucialX6		/media/sf_Network	cifs	rw,guest,vers=1.0	0	0
 sudo mount -a
