@@ -9,7 +9,6 @@
     "git.terminalAuthentication": false,
     "workbench.iconTheme": "vscode-icons",
     "vsicons.dontShowNewVersionMessage": true,
-    "window.zoomLevel": 1,
     "editor.fontFamily": "DejaVu Sans Mono",
     "editor.fontSize": 16,
     "terminal.integrated.fontSize": 16,
@@ -39,5 +38,6 @@
         "terminal.ansiRed":"#D16969",
         "terminal.ansiWhite":"#D4D4D4",
         "terminal.ansiYellow":"#D7BA7D"
-    }
+    },
+    "window.zoomLevel": 0.25,
 }

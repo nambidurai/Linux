@@ -82,3 +82,7 @@ sqlite()	# Sqlite3 				#
 	sudo apt install sqlite3
 }
 
+tor()		# Tor Browser 				#
+{	
+	sudo apt -t buster-backports install torbrowser-launcher
+}

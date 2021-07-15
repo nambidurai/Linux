@@ -20,7 +20,7 @@ exec_always --no-startup-id xsetroot -solid "#1E1E1E"
 # Sudo password dialog
 exec_always --no-startup-id /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1 &
 # Google Chrome
-exec --no-startup-id google-chrome &
+exec --no-startup-id google-chrome --force-device-scale-factor=1.5 &
 
 # Start i3bar to display a workspace bar
 bar {
@@ -92,9 +92,9 @@ mode "$MainMenu" {
         # terminal
         bindsym t exec i3-sensible-terminal, mode "default"
         # google Chrome
-        bindsym g exec google-chrome, mode "default"
+        bindsym g exec google-chrome --force-device-scale-factor=1.5, mode "default"
         # vscode
-        bindsym c exec code, mode "default"
+        bindsym c exec code --force-device-scale-factor=1.5, mode "default"
 
         # switch to workspace
         bindsym 1 workspace $ws1, mode "default"
